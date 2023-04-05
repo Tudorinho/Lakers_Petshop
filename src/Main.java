@@ -39,5 +39,9 @@ public class Main {
 
         // Feed all the pets in the system
         petShop.feedPets();
+
+        // Interactive menu
+        Menu menu = new Menu(petShop);
+        menu.display();
     }
 }
