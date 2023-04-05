@@ -23,9 +23,9 @@ public class Main {
         petShop.addPet(pet2);
         customer1.addPet(pet2);
 
-        Pet pet3 = new Dog("Grande2", 3, "Golden Retriever", 60.0, true, "sushi");
-        petShop.addPet(pet3);
-        customer1.addPet(pet3);
+//        Pet pet3 = new Dog("Grande2", 3, "Golden Retriever", 60.0, true, "sushi");
+//        petShop.addPet(pet3);
+//        customer1.addPet(pet3);
 
         // Hire an employee
         Employee employee1 = new Employee("Maria", 25, 5000.0);
