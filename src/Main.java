@@ -23,22 +23,16 @@ public class Main {
         petShop.addPet(pet2);
         customer1.addPet(pet2);
 
-//        Pet pet3 = new Dog("Grande2", 3, "Golden Retriever", 60.0, true, "sushi");
-//        petShop.addPet(pet3);
-//        customer1.addPet(pet3);
+        Pet pet3 = new Dog("Bobby", 12, "Siberian Husky", 45.0, true, "meat");
+        petShop.addPet(pet3);
+        customer2.addPet(pet3);
 
-        // Hire an employee
+        // Hire 2 employees
         Employee employee1 = new Employee("Maria", 25, 5000.0);
         petShop.hireEmployee(employee1);
+        Employee employee2 = new Employee("Ion", 43, 7500.0);
+        petShop.hireEmployee(employee2);
 
-        // Display all customers that have pets
-        petShop.displayCustomers(petShop.getCustomersWithPets());
-
-        // Display all customers
-        petShop.displayCustomers();
-
-        // Feed all the pets in the system
-        petShop.feedPets();
 
         // Interactive menu
         Menu menu = new Menu(petShop);

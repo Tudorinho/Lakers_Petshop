@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 public class PetShopSystem {
     private List<Customer> customers;
     private Set<Pet> pets;
@@ -36,9 +37,25 @@ public class PetShopSystem {
         employees.put(employee.getName(), employee);
     }
 
-    public void fireEmployee(String name) {
-        employees.remove(name);
+
+    // Method to remove an employee from the employee map
+    public void removeEmployee(String employeeId) {
+        employees.remove(employeeId);
     }
+
+    public boolean fireEmployee(String employeeName) {
+        Employee employee = findEmployee(employeeName);
+        if (employee == null) {
+            System.out.println("Employee not found");
+            return false;
+        }
+        employees.remove(employeeName);
+        System.out.println(employeeName + " has been fired.");
+        return true;
+    }
+
+
+
 
     public List<Pet> getAllPets() {
         List<Pet> allPets = new ArrayList<>();
@@ -63,9 +80,19 @@ public class PetShopSystem {
         return customersWithPets;
     }
 
+//    public Employee findEmployee(String name) {
+//        return employees.get(name);
+//    }
+
+    public static Employee findEmployee(String name, Map<String, Employee> employees) {
+        return employees.get(name);
+    }
+
     public Employee findEmployee(String name) {
         return employees.get(name);
     }
+
+
 
     public static Set<Dog> filterDogs(Set<Pet> pets) {
         Set<Dog> dogs = new HashSet<>();
@@ -79,6 +106,7 @@ public class PetShopSystem {
         return dogs;
     }
 
+    //displayCustomers with list of customers as parameter(for the customers with pets)
     public void displayCustomers(List<Customer> customers) {
         for (Customer customer : customers) {
             System.out.println("Customers with pets:");
@@ -87,6 +115,7 @@ public class PetShopSystem {
         System.out.println(System.lineSeparator());
     }
 
+    //displayCustomers with no parameters(representing all the customers)
     public void displayCustomers() {
         System.out.println("All our customers:");
         for(Customer customer : this.customers) {
@@ -106,4 +135,60 @@ public class PetShopSystem {
         }
         System.out.println(System.lineSeparator());
     }
+
+
+    public void displayEmployees() {
+        if(employees.isEmpty()) {
+            System.out.println("There are no employees in the system.");
+            return;
+        }
+        System.out.println("List of employees in the system:");
+        for (Map.Entry<String, Employee> entry : employees.entrySet()) {
+            Employee employee = entry.getValue();
+            System.out.println("Name: " + employee.getName() + ", Age: " + employee.getAge() + ", Salary: " + employee.getSalary());
+        }
+    }
+
+
+    public void displayPets() {
+        for (Pet pet : pets) {
+            if (pet instanceof Dog) {
+                Dog dog = (Dog) pet;
+                System.out.println("Dog:");
+                System.out.println("Name: " + dog.getName());
+                System.out.println("Age: " + dog.getAge());
+                System.out.println("Breed: " + dog.getBreed());
+                System.out.println("Weight: " + dog.getWeight());
+                System.out.println("Is friendly: " + dog.getIsFriendly());
+                System.out.println("Favorite food: " + dog.getFavoriteFood());
+                System.out.println();
+            } else {
+                Cat cat = (Cat) pet;
+                System.out.println("Cat:");
+                System.out.println("Name: " + cat.getName());
+                System.out.println("Age: " + cat.getAge());
+                System.out.println("Breed: " + cat.getBreed());
+                System.out.println("Weight: " + cat.getWeight());
+                System.out.println("Is indoor: " + cat.getIsIndoor());
+                System.out.println("Fur color: " + cat.getFurColor());
+                System.out.println();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
