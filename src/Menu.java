@@ -13,8 +13,12 @@ public class Menu {
         while (true) {
             System.out.println("Pet Shop Menu:");
             System.out.println("1. Display all customers");
-            System.out.println("2. Display all employees");
-            System.out.println("3. Display all pets");
+            System.out.println("2. Display customers with pets");
+            System.out.println("3. Display all employees");
+            System.out.println("4. Hire employee");
+            System.out.println("5. Fire employee");
+            System.out.println("6. Display all pets");
+            System.out.println("7. Feed the pets");
             System.out.println("0. Exit");
 
             int choice = scanner.nextInt();
@@ -25,10 +29,39 @@ public class Menu {
                     petShop.displayCustomers();
                     break;
                 case 2:
-                    // display all employees
+                    petShop.displayCustomers(petShop.getCustomersWithPets());
                     break;
                 case 3:
-                    // display all pets
+                    petShop.displayEmployees();
+                    break;
+                case 4:
+                    System.out.print("Enter employee name: ");
+                    String empName = scanner.nextLine();
+                    System.out.print("Enter employee age: ");
+                    int empAge = scanner.nextInt();
+                    System.out.print("Enter employee salary: ");
+                    double empSalary = scanner.nextDouble();
+                    scanner.nextLine(); // consume the newline character
+
+                    Employee newEmployee = new Employee(empName, empAge, empSalary);
+                    petShop.hireEmployee(newEmployee);
+                    System.out.println("Employee hired: " + newEmployee);
+
+                    break;
+                case 5:
+                    System.out.print("Enter the name of the employee to be fired: ");
+                    String employeeName = scanner.nextLine();
+                    boolean result = petShop.fireEmployee(employeeName);
+                    if (!result) {
+                        System.out.println("Failed to fire employee");
+                    }
+                    break;
+
+                case 6:
+                    petShop.displayPets();
+                    break;
+                case 7:
+                    petShop.feedPets();
                     break;
                 case 0:
                     // exit the program

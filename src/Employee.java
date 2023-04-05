@@ -52,9 +52,13 @@ public class Employee {
 //        return e1.getName().compareTo(e2.getName());
 //    }
 
+
     public void removeEmployee(Employee employee) {
         employeeList.remove(employee);
+        employeeSet.remove(employee);
     }
+
+
 
     @Override
     public String toString() {
