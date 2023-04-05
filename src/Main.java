@@ -1,5 +1,9 @@
+// Proiect Programare Avansata pe Obiecte -> Java
+// Echipa Lakers formata din Nastase Antonio si Tudor Dan
+// Idee de proiect: Pet shop
 public class Main {
     public static void main(String[] args) {
+
         // Create a new pet shop system
         PetShopSystem petShop = new PetShopSystem();
 
@@ -18,6 +22,10 @@ public class Main {
         Pet pet2 = new Cat("MiMi", 3, "Himalayan", 20.0, true, "white");
         petShop.addPet(pet2);
         customer1.addPet(pet2);
+
+        Pet pet3 = new Dog("Grande2", 3, "Golden Retriever", 60.0, true, "sushi");
+        petShop.addPet(pet3);
+        customer1.addPet(pet3);
 
         // Hire an employee
         Employee employee1 = new Employee("Maria", 25, 5000.0);
