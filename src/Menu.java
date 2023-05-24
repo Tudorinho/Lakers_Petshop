@@ -23,8 +23,9 @@ public class Menu {
             System.out.println("3. Display all employees");
             System.out.println("4. Hire employee");
             System.out.println("5. Fire employee");
-            System.out.println("6. Display all pets");
-            System.out.println("7. Feed the pets");
+            System.out.println("6. Update employee");
+            System.out.println("7. Display all pets");
+//            System.out.println("7. Feed the pets");
             System.out.println("0. Exit");
 
             int choice = scanner.nextInt();
@@ -50,24 +51,35 @@ public class Menu {
                     scanner.nextLine(); // consume the newline character
 
                     Employee newEmployee = new Employee(empName, empAge, empSalary);
-                    petShop.hireEmployee(newEmployee);
+                    petShop.hireEmployeeDB(newEmployee);
                     System.out.println("Employee hired: " + newEmployee);
 
                     break;
                 case 5:
                     System.out.print("Enter the name of the employee to be fired: ");
                     String employeeName = scanner.nextLine();
-                    boolean result = petShop.fireEmployee(employeeName);
-                    if (!result) {
-                        System.out.println("Failed to fire employee");
-                    }
+                    petShop.fireEmployeeDB(employeeName);
+                    System.out.println("Employee fired successfully.");
                     break;
-
                 case 6:
-                    petShop.displayPets();
+                    // Prompt user for employee details
+                    System.out.print("Enter the name of the employee to update: ");
+                    String employeeName1 = scanner.nextLine();
+                    System.out.print("Enter the new age: ");
+                    int age = scanner.nextInt();
+                    System.out.print("Enter the new salary: ");
+                    double salary = scanner.nextDouble();
+
+                    scanner.nextLine(); // Consume newline character
+
+                    // Create an Employee object with the updated details
+                    Employee updatedEmployee = new Employee(employeeName1, age, salary);
+
+                    // Call the updateEmployeeDB method in PetShopSystem instance
+                    petShop.updateEmployeeDB(updatedEmployee);
                     break;
                 case 7:
-                    petShop.feedPets();
+                    petShop.displayPets();
                     break;
                 case 0:
                     // exit the program

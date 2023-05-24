@@ -18,6 +18,10 @@ public class EmployeeDB {
         }
     }
 
+//    public void hireEmployeeDB(Employee employee) {
+//        createEmployee(employee);
+//    }
+
     public static EmployeeDB getInstance() {
         if (instance == null) {
             instance = new EmployeeDB();
@@ -34,7 +38,8 @@ public class EmployeeDB {
             statement.setDouble(3, employee.getSalary());
             statement.executeUpdate();
             statement.close();
-            System.out.println("Employee created successfully.");
+            System.out.println("Employee created successfully(database).");
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,6 +80,7 @@ public class EmployeeDB {
             } else {
                 System.out.println("No employee found with the given name.");
             }
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -92,6 +98,7 @@ public class EmployeeDB {
             } else {
                 System.out.println("No employee found with the given name.");
             }
+            conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

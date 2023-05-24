@@ -43,6 +43,10 @@ public class PetShopSystem {
         employees.put(employee.getName(), employee);
     }
 
+    public void hireEmployeeDB(Employee employee) {
+        EmployeeManager.createEmployee(employee);
+    }
+
 
     // Method to remove an employee from the employee map
     public void removeEmployee(String employeeId) {
@@ -60,6 +64,9 @@ public class PetShopSystem {
         return true;
     }
 
+    public void fireEmployeeDB(String employeeName) {
+        EmployeeManager.deleteEmployee(employeeName);
+    }
 
 
 
@@ -86,9 +93,11 @@ public class PetShopSystem {
         return customersWithPets;
     }
 
-//    public Employee findEmployee(String name) {
-//        return employees.get(name);
-//    }
+    public void updateEmployeeDB(Employee employee) {
+        EmployeeManager.updateEmployee(employee);
+    }
+
+
 
     public static Employee findEmployee(String name, Map<String, Employee> employees) {
         return employees.get(name);
@@ -144,15 +153,20 @@ public class PetShopSystem {
 
 
     public void displayEmployees() {
-        if(employees.isEmpty()) {
-            System.out.println("There are no employees in the system.");
-            return;
-        }
+//        if(employees.isEmpty()) {
+//            System.out.println("There are no employees in the system.");
+//            return;
+//        }
+//        for (Map.Entry<String, Employee> entry : employees.entrySet()) {
+//            Employee employee = entry.getValue();
+//            System.out.println("Name: " + employee.getName() + ", Age: " + employee.getAge() + ", Salary: " + employee.getSalary());
+//        }
+
         System.out.println("List of employees in the system:");
-        for (Map.Entry<String, Employee> entry : employees.entrySet()) {
-            Employee employee = entry.getValue();
-            System.out.println("Name: " + employee.getName() + ", Age: " + employee.getAge() + ", Salary: " + employee.getSalary());
+        for(Employee employee : this.EmployeeManager.getAllEmployees()) {
+            System.out.println("---- " + employee);
         }
+        System.out.println(System.lineSeparator());
     }
 
 
