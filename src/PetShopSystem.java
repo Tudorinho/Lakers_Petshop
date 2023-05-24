@@ -175,19 +175,6 @@ public class PetShopSystem {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

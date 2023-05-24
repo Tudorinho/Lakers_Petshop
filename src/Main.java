@@ -3,7 +3,6 @@
 // Idee de proiect: Pet shop
 public class Main {
     public static void main(String[] args) {
-
         // Create a new pet shop system
         PetShopSystem petShop = new PetShopSystem();
 
