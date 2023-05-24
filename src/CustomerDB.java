@@ -7,10 +7,11 @@ import java.util.List;
 
 public class CustomerDB {
     private static CustomerDB instance = null;
-    private Connection conn = null;
+    private static Connection conn = null;
     private CustomerDB() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "Parola11@");
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -109,6 +110,12 @@ public class CustomerDB {
         customerManager.updateCustomer(firstCustomer);
         customers = customerManager.getAllCustomers();
         System.out.println(customers.get(0).getAddress());
+
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Delete statement test
         customerManager.saveCustomer("Darius", "Strada Arcului 14", "070000000");

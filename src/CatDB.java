@@ -7,11 +7,12 @@ import java.util.List;
 
 public class CatDB {
     private static CatDB instance;
-    private Connection conn = null;
+    private static Connection conn = null;
 
     private CatDB() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "Parola11@");
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -26,7 +27,7 @@ public class CatDB {
 
     public void createCat(Cat cat) {
         try {
-            String query = "INSERT INTO cats (name, age, breed, weight, inDoor, furColor) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO cats (name, age, breed, weight, isIndoor, furColor) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, cat.getName());
             statement.setInt(2, cat.getAge());
@@ -53,9 +54,9 @@ public class CatDB {
                 int age = resultSet.getInt("age");
                 String breed = resultSet.getString("breed");
                 Double weight = resultSet.getDouble("weight");
-                Boolean inDoor  = resultSet.getBoolean("inDoor");
+                Boolean isIndoor  = resultSet.getBoolean("isIndoor");
                 String furColor = resultSet.getString("furColor");
-                Cat cat = new Cat(name, age, breed, weight, inDoor, furColor);
+                Cat cat = new Cat(name, age, breed, weight, isIndoor, furColor);
                 cats.add(cat);
             }
             resultSet.close();
@@ -68,7 +69,7 @@ public class CatDB {
 
     public void updateCat(Cat cat) {
         try {
-            String query = "UPDATE cats SET age = ?, breed = ?, weight = ?, inDoor = ?, furColor = ? WHERE name = ?";
+            String query = "UPDATE cats SET age = ?, breed = ?, weight = ?, isIndoor = ?, furColor = ? WHERE name = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, cat.getAge());
             statement.setString(2, cat.getBreed());
@@ -128,6 +129,12 @@ public class CatDB {
         CatManager.deleteCat("Bobby");
         Cats = CatManager.getAllCats();
         System.out.println(Cats);
+
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 

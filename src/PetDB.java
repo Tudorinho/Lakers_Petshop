@@ -7,11 +7,12 @@ import java.util.List;
 
 public class PetDB {
     private static PetDB instance;
-    private Connection conn = null;
+    private static Connection conn = null;
 
     private PetDB() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "Parola11@");
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -108,6 +109,11 @@ public class PetDB {
         petManager.createPet(pet1);
         List<Pet> pets = petManager.getAllPets();
         System.out.println(pets.get(0).getName());
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         // Update statement test
         Pet firstPet = pets.get(0);
@@ -122,5 +128,11 @@ public class PetDB {
         petManager.deletePet("Bobby");
         pets = petManager.getAllPets();
         System.out.println(pets);
+
+//        try {
+//            conn.commit();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }

@@ -9,6 +9,12 @@ public class Menu {
         this.scanner = new Scanner(System.in);
     }
 
+//    CustomerDB customerManager = CustomerDB.getInstance();
+//    DogDB DogManager = DogDB.getInstance();
+//    CatDB CatManager = CatDB.getInstance();
+//    EmployeeDB EmployeeManager = EmployeeDB.getInstance();
+//    PetDB petManager = PetDB.getInstance();
+
     public void display() {
         while (true) {
             System.out.println("Pet Shop Menu:");

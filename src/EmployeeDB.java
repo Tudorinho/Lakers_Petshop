@@ -7,11 +7,12 @@ import java.util.List;
 
 public class EmployeeDB {
     private static EmployeeDB instance;
-    private Connection conn = null;
+    private static Connection conn = null;
 
     private EmployeeDB() {
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "123456");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/petshop_db", "root", "Parola11@");
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,5 +120,11 @@ public class EmployeeDB {
         EmployeeManager.deleteEmployee("Ion");
         Employees = EmployeeManager.getAllEmployees();
         System.out.println(Employees);
+
+        try {
+            conn.commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

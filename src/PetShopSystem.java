@@ -11,6 +11,12 @@ public class PetShopSystem {
     private Set<Pet> pets;
     private Map<String, Employee> employees;
 
+    CustomerDB customerManager = CustomerDB.getInstance();
+    DogDB DogManager = DogDB.getInstance();
+    CatDB CatManager = CatDB.getInstance();
+    EmployeeDB EmployeeManager = EmployeeDB.getInstance();
+    PetDB petManager = PetDB.getInstance();
+
     public PetShopSystem() {
         customers = new ArrayList<>();
         pets = new HashSet<>();
@@ -118,7 +124,7 @@ public class PetShopSystem {
     //displayCustomers with no parameters(representing all the customers)
     public void displayCustomers() {
         System.out.println("All our customers:");
-        for(Customer customer : this.customers) {
+        for(Customer customer : this.customerManager.getAllCustomers()) {
             System.out.println("---- " + customer);
         }
         System.out.println(System.lineSeparator());
@@ -151,7 +157,7 @@ public class PetShopSystem {
 
 
     public void displayPets() {
-        for (Pet pet : pets) {
+        for (Pet pet : this.petManager.getAllPets()) {
             if (pet instanceof Dog) {
                 Dog dog = (Dog) pet;
                 System.out.println("Dog:");
@@ -162,7 +168,7 @@ public class PetShopSystem {
                 System.out.println("Is friendly: " + dog.getIsFriendly());
                 System.out.println("Favorite food: " + dog.getFavoriteFood());
                 System.out.println();
-            } else {
+            } else if (pet instanceof Cat) {
                 Cat cat = (Cat) pet;
                 System.out.println("Cat:");
                 System.out.println("Name: " + cat.getName());
@@ -172,6 +178,12 @@ public class PetShopSystem {
                 System.out.println("Is indoor: " + cat.getIsIndoor());
                 System.out.println("Fur color: " + cat.getFurColor());
                 System.out.println();
+            }
+            else{
+                System.out.println("Name: " + pet.getName());
+                System.out.println("Age: " + pet.getAge());
+                System.out.println("Breed: " + pet.getBreed());
+                System.out.println("Weight: " + pet.getWeight());
             }
         }
     }
