@@ -34,12 +34,15 @@ public class Menu {
             switch (choice) {
                 case 1:
                     petShop.displayCustomers();
+                    AuditLogger.logAction("Read Operation");
                     break;
                 case 2:
                     petShop.displayCustomers(petShop.getCustomersWithPets());
+                    AuditLogger.logAction("Read Operation");
                     break;
                 case 3:
                     petShop.displayEmployees();
+                    AuditLogger.logAction("Read Operation");
                     break;
                 case 4:
                     System.out.print("Enter employee name: ");
@@ -53,13 +56,14 @@ public class Menu {
                     Employee newEmployee = new Employee(empName, empAge, empSalary);
                     petShop.hireEmployeeDB(newEmployee);
                     System.out.println("Employee hired: " + newEmployee);
-
+                    AuditLogger.logAction("Create Operation");
                     break;
                 case 5:
                     System.out.print("Enter the name of the employee to be fired: ");
                     String employeeName = scanner.nextLine();
                     petShop.fireEmployeeDB(employeeName);
                     System.out.println("Employee fired successfully.");
+                    AuditLogger.logAction("Delete Operation");
                     break;
                 case 6:
                     // Prompt user for employee details
@@ -77,9 +81,11 @@ public class Menu {
 
                     // Call the updateEmployeeDB method in PetShopSystem instance
                     petShop.updateEmployeeDB(updatedEmployee);
+                    AuditLogger.logAction("Update Operation");
                     break;
                 case 7:
                     petShop.displayPets();
+                    AuditLogger.logAction("Read Operation");
                     break;
                 case 0:
                     // exit the program
